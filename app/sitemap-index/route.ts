@@ -1,0 +1,17 @@
+import { NextResponse } from 'next/server';
+
+export async function GET() {
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://dev-squareone-fe.true-2.com';
+
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
+    <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+      <sitemap><loc>${baseUrl}/sitemap/page.xml</loc></sitemap>
+      <sitemap><loc>${baseUrl}/sitemap/store.xml</loc></sitemap>
+      <sitemap><loc>${baseUrl}/sitemap/blog.xml</loc></sitemap>
+      <sitemap><loc>${baseUrl}/sitemap/event.xml</loc></sitemap>
+    </sitemapindex>`;
+
+  return new NextResponse(xml, {
+    headers: { 'Content-Type': 'application/xml' },
+  });
+}
